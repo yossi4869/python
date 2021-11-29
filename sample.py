@@ -3,6 +3,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import serial as se
+import time as ti
+import speech_recognition as sr
+
+r = sr.Recognizer()
+mic = sr.Microphone()
 ser=se.Serial("COM3" , 115200)
 conf = [] 
 btn = [0] * 10
@@ -85,7 +90,7 @@ class MainWindow(QWidget):
                 layout.addWidget(btn[num],1,num-5)
         self.setLayout(layout)
         
-    
+
         
                 # self.textbox1 =QLineEdit(self)
                 # self.textbox1.move(500,500)
@@ -97,10 +102,9 @@ class MainWindow(QWidget):
         elestim(1)
 
 if __name__ == '__main__':
-    for num in range(10):
-         conf.append(Figure('hello',2,2))
-
+    # for num in range(10):
+    #      conf.append(Figure('hello',2,2))
     app = QApplication(sys.argv) #PyQtで必ず呼び出す必要のあるオブジェクト
     main_window = MainWindow() #ウィンドウクラスのオブジェクト生成
     main_window.show() #ウィンドウの表示
-    sys.exit(app.exec_()) #プログラム終了
+    sys.exit(app.exec_()) #プログラム終了   
