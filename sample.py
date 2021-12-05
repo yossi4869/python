@@ -24,9 +24,57 @@ class bottomnum:
         self.num=num 
 
     def printnum(self):
-        print(self.num)
+        while True:
+            print("Say something ...")
+
+            with mic as source:
+               r.adjust_for_ambient_noise(source) #雑音対策
+               audio = r.listen(source)
+
+            print ("Now to recognize it...")
+
+            try:
+                print(r.recognize_google(audio, language='ja-JP'))
+                if r.recognize_google(audio, language='ja-JP') == "1" :
+                    ser.write(bytes("0",'UTF-8'))
+                    break        
+                if r.recognize_google(audio, language='ja-JP') == "2" :
+                    ser.write(bytes("1",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "3" :
+                    ser.write(bytes("2",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "4" :
+                    ser.write(bytes("3",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "5" :
+                    ser.write(bytes("4",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "6" :
+                    ser.write(bytes("5",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "7" :
+                    ser.write(bytes("6",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "8" :
+                    ser.write(bytes("7",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "9" :
+                    ser.write(bytes("8",'UTF-8'))
+                    break    
+                if r.recognize_google(audio, language='ja-JP') == "10" :
+                    ser.write(bytes("9",'UTF-8'))
+                    break    
+                                                                                                                              
+
+             # 以下は認識できなかったときに止まらないように。
+            except sr.UnknownValueError:
+                 print("could not understand audio")
+            except sr.RequestError as e:
+                print("Could not request results from Google Speech Recognition service; {0}".format(e))
         
-        ser.write(bytes(f'{self.num}','UTF-8'))
+        
+            
 
 # def elestim(n):
 #     print(1)
@@ -76,7 +124,7 @@ class MainWindow(QWidget):
                 btn[num].resize(140,210)
                 # btn[num].clicked.connect(bt_num.printnum)
                 btn[num].save_num(num)
-                btn[num].clicked.connect(btn[num].print_num)
+                btn[num].clicked.connect(bt_num.printnum)
                 # btn[num].clicked.connect(lambda:print(num))
                 # self.textbox1 =QLineEdit(self)
                 # self.textbox1.move(500,500)
