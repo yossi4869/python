@@ -64,8 +64,9 @@ class NishikawaButton(QPushButton):
 
     def print_num(self):
         print(self.num)
-        ti.sleep(3)
-        ser.write(bytes(f"{self.num}", "UTF-8"))
+        # ser.write(self.num.encode("utf-8"))
+        # ti.sleep(3)
+        # ser.write(bytes(f"{self.num}", "UTF-8"))
 
 
 class MainWindow(QWidget):
